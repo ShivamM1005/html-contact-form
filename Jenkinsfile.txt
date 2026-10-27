@@ -1,0 +1,24 @@
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Get Source Code') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Check Python') {
+            steps {
+                bat 'python --version'
+            }
+        }
+
+        stage('Run Automated Tests') {
+            steps {
+                bat 'python -m unittest test_form.py'
+            }
+        }
+    }
+}
